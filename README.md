@@ -1,6 +1,6 @@
 Commit of:
 - New default wallpaper (orion nebula)
-- Modification of Android Audio service for 30 steps of volume instead of 15
+- Modification of Android Audio service for 30 steps of volume instead of 10
 
 ---------------------------------------------------------------------------------------------------
 
