@@ -715,7 +715,11 @@ static int start_output_stream(struct sunxi_stream_out *out)
 
 	int device = adev->devices;
 	char prop_value[512];
-    int ret = property_get("audio.routing", prop_value, "");
+   	int ret = property_get("audio.routing", prop_value, "");
+
+	char prop_value2[16];
+	int ret2 = property_get("audio.hdmi_bypass", prop_value2, "");
+
 	if (ret > 0)
 	{
 	    if(atoi(prop_value) == AUDIO_DEVICE_OUT_SPEAKER)
@@ -725,8 +729,15 @@ static int start_output_stream(struct sunxi_stream_out *out)
 		}
 		else if(atoi(prop_value) == AUDIO_DEVICE_OUT_AUX_DIGITAL)
 		{
-			ALOGD("start_output_stream AUDIO_DEVICE_OUT_AUX_DIGITAL");
-			device = AUDIO_DEVICE_OUT_AUX_DIGITAL;
+			if (atoi(prop_value2) == 0) {
+				ALOGD("start_output_stream AUDIO_DEVICE_OUT_AUX_DIGITAL (HDMI)");
+				device = AUDIO_DEVICE_OUT_AUX_DIGITAL;
+			}
+			else {
+
+				ALOGD("start_output_stream AUDIO_DEVICE_OUT_AUX_DIGITAL (HDMI Audio Bypass)");
+				device = AUDIO_DEVICE_OUT_SPEAKER;
+			}
 		}
 		else if(atoi(prop_value) == AUDIO_DEVICE_OUT_DGTL_DOCK_HEADSET)
 		{
