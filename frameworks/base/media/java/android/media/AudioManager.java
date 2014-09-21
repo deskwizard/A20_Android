@@ -223,16 +223,16 @@ public class AudioManager {
 
     /**  @hide Default volume index values for audio streams */
     public static final int[] DEFAULT_STREAM_VOLUME = new int[] {
-        4,  // STREAM_VOICE_CALL
-        7,  // STREAM_SYSTEM
-        5,  // STREAM_RING
-        11, // STREAM_MUSIC
-        6,  // STREAM_ALARM
-        5,  // STREAM_NOTIFICATION
-        7,  // STREAM_BLUETOOTH_SCO
-        7,  // STREAM_SYSTEM_ENFORCED
-        11, // STREAM_DTMF
-        11  // STREAM_TTS
+        8,  // STREAM_VOICE_CALL
+        14,  // STREAM_SYSTEM
+        10,  // STREAM_RING
+        22, // STREAM_MUSIC
+        12,  // STREAM_ALARM
+        10,  // STREAM_NOTIFICATION
+        14,  // STREAM_BLUETOOTH_SCO
+        14,  // STREAM_SYSTEM_ENFORCED
+        22, // STREAM_DTMF
+        22  // STREAM_TTS
     };
 
     /**
