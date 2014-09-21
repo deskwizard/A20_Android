@@ -74,7 +74,7 @@ static char primary_iface[PROPERTY_VALUE_MAX];
     #define WIFI_DRIVER_MODULE_NAME         "8192cu"
     #endif
     #ifndef WIFI_DRIVER_MODULE_ARG
-    #define WIFI_DRIVER_MODULE_ARG         "ifname=wlan0 if2name=p2p0"
+    #define WIFI_DRIVER_MODULE_ARG         "ifname=wlan0 if2name=p2p0 rtw_power_mgnt=0 rtw_enusbss=0" // added rtw_power_mgnt=0 rtw_enusbss=0 from linux-sunxi"
     #endif
 
 #elif defined RTL_8188EU_WIFI_USED
@@ -86,7 +86,7 @@ static char primary_iface[PROPERTY_VALUE_MAX];
     #define WIFI_DRIVER_MODULE_NAME         "8188eu"
     #endif
     #ifndef WIFI_DRIVER_MODULE_ARG
-    #define WIFI_DRIVER_MODULE_ARG         "ifname=wlan0 if2name=p2p0"
+    #define WIFI_DRIVER_MODULE_ARG         "ifname=wlan0 if2name=p2p0 rtw_power_mgnt=0 rtw_enusbss=0" // added rtw_power_mgnt=0 rtw_enusbss=0 from linux-sunxi"
     #endif
 
 #elif defined RTL_8723AS_WIFI_USED
