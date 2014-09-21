@@ -220,16 +220,16 @@ public class AudioService extends IAudioService.Stub implements OnFinished {
 
    /** @hide Maximum volume index values for audio streams */
     private final int[] MAX_STREAM_VOLUME = new int[] {
-        10,  // STREAM_VOICE_CALL
-        14,  // STREAM_SYSTEM
-        14,  // STREAM_RING
-        30, // STREAM_MUSIC
-        14,  // STREAM_ALARM
-        14,  // STREAM_NOTIFICATION
-        30, // STREAM_BLUETOOTH_SCO
-        14,  // STREAM_SYSTEM_ENFORCED
-        30, // STREAM_DTMF
-        30  // STREAM_TTS
+        5,  // STREAM_VOICE_CALL
+        7,  // STREAM_SYSTEM
+        7,  // STREAM_RING
+        15, // STREAM_MUSIC
+        7,  // STREAM_ALARM
+        7,  // STREAM_NOTIFICATION
+        15, // STREAM_BLUETOOTH_SCO
+        7,  // STREAM_SYSTEM_ENFORCED
+        15, // STREAM_DTMF
+        15  // STREAM_TTS
     };
     /* mStreamVolumeAlias[] indicates for each stream if it uses the volume settings
      * of another stream: This avoids multiplying the volume settings for hidden
