@@ -18,7 +18,7 @@
 -->
 <resources>
     <bool name="def_dim_screen">true</bool>
-    <integer name="def_screen_off_timeout">30</integer>
+    <integer name="def_screen_off_timeout">60000</integer>
     <bool name="def_airplane_mode_on">false</bool>
     <!-- Comma-separated list of bluetooth, wifi, and cell. -->
     <string name="def_airplane_mode_radios" translatable="false">cell,bluetooth,wifi,nfc,wimax</string>
@@ -35,7 +35,7 @@
 
     <bool name="def_bluetooth_on">false</bool>
     <bool name="def_wifi_display_on">false</bool>
-    <bool name="def_install_non_market_apps">false</bool>
+    <bool name="def_install_non_market_apps">true</bool>
     <bool name="def_package_verifier_enable">true</bool>
     <!-- Comma-separated list of location providers.
          Network location is off by default because it requires
