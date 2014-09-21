@@ -1,3 +1,9 @@
+Commit of:
+- New default wallpaper (orion nebula)
+- Modification of Android Audio service for 30 steps of volume instead of 15
+
+---------------------------------------------------------------------------------------------------
+
 Initial commit of "full_base.mk" file:
 
 Removed from base build:
