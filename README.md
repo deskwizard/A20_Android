@@ -1,3 +1,13 @@
+Initial commit of "full_base.mk" file:
+
+Removed from base build:
+
+   OpenWnn
+   libWnnEngDic
+   libWnnJpnDic
+   libwnndict
+
+---------------------------------------------------------------------------------------------------
 Initial commit of:
 
 1) opendingus "radio": Works with RDA5807 kernel driver for I2C radio control by command line
