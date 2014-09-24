@@ -25,13 +25,14 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <linux/i2c.h>
+#include <linux/i2c-dev.h>
 #include <limits.h>
  
 static int i2c_fd;
 
 static int i2c_open(void)
 {
-  i2c_fd = open("/dev/i2c-1", O_RDWR);
+  i2c_fd = open("/dev/i2c-0", O_RDWR);
   if (!i2c_fd) {
     perror("Unable to open i2c dev file");
     return -1;
@@ -133,7 +134,6 @@ int RadioShowHelp(void)
   printf("radio --status      : show FM chip status\n");
   printf("radio --register    : show registers of FM chip\n");
   printf("radio --registerall : show all registers of FM chip\n");
-  printf("radio --tune        : show tuned channel\n");
   printf("radio --help        : show this help\n");
   return 0;
 }
@@ -206,7 +206,7 @@ int RadioStatus(void)
   i2c_read(buffer, 2); // read register 0x0A
   i2c_close();
  
-  RadioFrequency(freqtext, buffer);
+  RadioFrequency(freqtext, buffer); 
 
   if (buffer[0] & 0b01000000)
   {
@@ -219,28 +219,6 @@ int RadioStatus(void)
   } else {
     printf("Seeking ... ( %s )\n", freqtext);   
   }
-  return 0;
-}
-
-int RadioSet(void)
-{
-  static unsigned char buffer[2]; 
-  static char freqtext[10]; 
-
-  i2c_open();
-  i2c_read(buffer, 2); // read register 0x0A (Current status/ frequency)
-  i2c_close();
- 
-  RadioFrequency(freqtext, buffer);  // Convert reading to frequency value
-
-  printf("Tuned to: ( %s )\n", freqtext);
-
-
-
-  printf("Trying manual tuning to: ");
-  printf("97.7\n");
-  printf("Tuning to: ( %s )\n", freqtext);
-
   return 0;
 }
 
@@ -281,10 +259,6 @@ int main(int argc, char **argv)
     }
     if (strcmp(argv[0], "--status") == 0) {
       RadioStatus();
-      continue;
-    }
-    if (strcmp(argv[0], "--tune") == 0) {
-      RadioSet();
       continue;
     }
     //if (strcmp(argv[0], "--chan") == 0) {
