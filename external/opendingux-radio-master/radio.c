@@ -25,14 +25,14 @@
 #include <sys/ioctl.h>
 #include <unistd.h>
 #include <linux/i2c.h>
-#include <linux/i2c-dev.h>
+//#include <linux/i2c-dev.h>
 #include <limits.h>
  
 static int i2c_fd;
 
 static int i2c_open(void)
 {
-  i2c_fd = open("/dev/i2c-0", O_RDWR);
+  i2c_fd = open("/dev/i2c-1", O_RDWR);
   if (!i2c_fd) {
     perror("Unable to open i2c dev file");
     return -1;
