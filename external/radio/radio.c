@@ -129,6 +129,7 @@ int RadioShowHelp(void)
 {
   printf("radio --start       : enable FM chip\n");
   printf("radio --stop        : disable FM chip\n");
+  printf("radio --chan        : tune to channel\n");
   printf("radio --seekup      : seek up\n");
   printf("radio --seekdown    : seek down\n");
   printf("radio --status      : show FM chip status\n");
@@ -166,6 +167,21 @@ int RadioStop(void)
   return 0;
 }
 
+int RadioChannel(int channel)
+{
+  static unsigned char buffer[]=
+  {
+    0b11000000, 0b00000001,	//0x02
+    0b00000000, 0b00000000,     //0x03
+    0b00000000, 0b00000000,     //0x04
+    0b00000100, 0b01110111,     //0x05
+  };
+  i2c_open();
+  i2c_write(buffer, 8);
+  i2c_close();
+  return 0;
+}
+
 int RadioSeekUp(void)
 {
   static unsigned char buffer[]=
@@ -192,7 +208,8 @@ int RadioSeekDown(void)
 
 int RadioFrequency(char freqtext[], unsigned char buffer[])
 {
-  int freq = 875  + 1 * (int)(buffer[1]);
+//  int freq = 875  + 1 * (int)(buffer[1]);
+  int freq = 870  + 1 * (int)(buffer[1]);
   sprintf(freqtext, "%d.%d MHz", freq / 10, freq % 10);
   return freq;
 }
@@ -261,12 +278,13 @@ int main(int argc, char **argv)
       RadioStatus();
       continue;
     }
-    //if (strcmp(argv[0], "--chan") == 0) {
+    if (strcmp(argv[0], "--chan") == 0) {
+      RadioChannel(977);  // testing
       //channel = atoi(argv[1]);
       //argc--;
       //argv++;
-      //continue;
-    //}
+      continue;
+    }
     printf("unknown option %s\n", argv[0]);
     return(1);
   }
