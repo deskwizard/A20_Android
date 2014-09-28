@@ -145,7 +145,7 @@ int RadioStart(void)
   static unsigned char buffer[]=
   {
     0b11000000, 0b00000001,	//0x02
-    0b00000000, 0b00000000,     //0x03
+    0b00000000, 0b00000011,     //0x03
     0b00000000, 0b00000000,     //0x04
     0b00000100, 0b01110111,     //0x05
   };
@@ -167,17 +167,20 @@ int RadioStop(void)
   return 0;
 }
 
-int RadioChannel(int channel)
+int RadioChannel(uint16_t channel)
 {
+
   static unsigned char buffer[]=
   {
     0b11000000, 0b00000001,	//0x02
-    0b00000000, 0b00000000,     //0x03
-    0b00000000, 0b00000000,     //0x04
-    0b00000100, 0b01110111,     //0x05
+    0b00101111, 0b00010011,     //0x03
   };
+
+//  buffer[3] = channel2 >>2;
+ // buffer[4] = (channel2 <<8) | 0b00010000; //buffer[4] | (channel2 << 8);
+  
   i2c_open();
-  i2c_write(buffer, 8);
+  i2c_write(buffer, 4);
   i2c_close();
   return 0;
 }
@@ -186,10 +189,11 @@ int RadioSeekUp(void)
 {
   static unsigned char buffer[]=
   {
-    0b11000011, 0b00000001	//0x02
+    0b11000011, 0b00000001,	//0x02
+    0b00000000, 0b00000011,     //0x03
   };
   i2c_open();
-  i2c_write(buffer, 2);
+  i2c_write(buffer, 4);
   i2c_close();
   return 0;
 }
@@ -198,10 +202,11 @@ int RadioSeekDown(void)
 {
   static unsigned char buffer[]=
   {
-    0b11000001, 0b00000001	//0x02
+    0b11000001, 0b00000001,	//0x02
+    0b00000000, 0b00000011,     //0x03    
   };
   i2c_open();
-  i2c_write(buffer, 2);
+  i2c_write(buffer, 4);
   i2c_close();
   return 0;
 }
